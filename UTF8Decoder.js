@@ -14,7 +14,7 @@ const decodeInput = () => {
     const encodedInput = document.getElementById("encodedInput").value.replace('jsondata=', '')
     const resultElement = document.getElementById("decodedResult")
     try {
-        const decodedString = decodeURI(encodedInput).replaceAll('%3A', ':').replaceAll('%2C', ',');
+        const decodedString = decodeURI(encodedInput).replaceAll("%2F","/").replaceAll('%3A', ':').replaceAll('%2C', ',');
         console.log(decodedString);
         resultElement.innerHTML = "UTF-8 Decoded String:";
         try {
