@@ -2,3 +2,25 @@
     white-space: pre;
     font-family: monospace;
 }
+
+.animate {
+    animation: disappear 1s linear;
+}
+
+.copyAlert {
+    opacity: 0;
+}
+
+@keyframes disappear {
+    30% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
