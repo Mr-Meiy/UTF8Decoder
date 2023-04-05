@@ -1,7 +1,7 @@
 const activateButton = () => {
-    const decodeButton = document.getElementById("decode")
-    const resultElement = document.getElementById("decodedResult")
-    const encodedInput = document.getElementById("encodedInput").value
+    const decodeButton = document.querySelector("#decode")
+    const resultElement = document.querySelector("#decodedResult")
+    const encodedInput = document.querySelector("#encodedInput").value
     if (encodedInput.length === 0) {
         decodeButton.disabled = true
         resultElement.innerHTML = ""
@@ -12,8 +12,8 @@ const activateButton = () => {
 }
 
 const decodeInput = () => {
-    const encodedInput = document.getElementById("encodedInput").value.replace('jsondata=', '')
-    const resultElement = document.getElementById("decodedResult")
+    const encodedInput = document.querySelector("#encodedInput").value.replace('jsondata=', '')
+    const resultElement = document.querySelector("#decodedResult")
     const decodedModalElement = document.querySelector("#decodedModalResponse")
     let decodedResponse = null
     resultElement.value = null
@@ -37,16 +37,14 @@ const decodeInput = () => {
         console.log(error)
         decodedResponse = error
     }
-    resultElement.value = decodedResponse
+    resultElement.innerHTML = hljs.highlight("json", decodedResponse).value
     decodedModalElement.innerHTML = decodedResponse
 }
 
 const copyToClipboard = () => {
-    const copyText = document.getElementById("decodedResult")
-    if (copyText.value.length > 0) {
-        copyText.select()
-        copyText.setSelectionRange(0, 99999)
-        navigator.clipboard.writeText(copyText.value)
+    const copyText = document.querySelector("#decodedResult").innerText
+    if (copyText.length > 0) {
+        navigator.clipboard.writeText(copyText)
         animateCopy()
     }
 }
